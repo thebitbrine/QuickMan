@@ -1,0 +1,1 @@
+# QuickMan.Lib
