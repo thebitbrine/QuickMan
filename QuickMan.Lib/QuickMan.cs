@@ -1,13 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace TheBitBrine
 {
@@ -252,6 +249,9 @@ namespace TheBitBrine
                             RequestedEndpoint = RequestedEndpoint.Remove(RequestedEndpoint.Length - 2, 1);
                         if (RequestedEndpoint.StartsWith("/")) RequestedEndpoint = RequestedEndpoint.Remove(0, 1);
                     }
+                    
+                    if (RequestedEndpoint.Contains('?'))
+                        RequestedEndpoint = RequestedEndpoint.Split('?')[0];
 
                     if (_Endpoints.ContainsKey(RequestedEndpoint))
                         _Endpoints[RequestedEndpoint](context);
