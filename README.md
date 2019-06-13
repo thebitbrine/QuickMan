@@ -25,6 +25,6 @@
             // You always have a respond to the request ASAP,
             // otherwise client will drop the connection after ~30 Seconds
             API.Respond("Hello World!", Context);
-            Console.WriteLine($"Said 'Hello World!' to {Context.Request.UserHostAddress}");
+            Console.WriteLine($"Said 'Hello World!' to {Context.Request.RemoteEndPoint}");
         }
 ```
