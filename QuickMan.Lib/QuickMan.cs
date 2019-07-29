@@ -17,7 +17,7 @@ namespace TheBitBrine
         private IPAddress _Address;
         private int _Port = 1999;
         private Dictionary<string, Action<HttpListenerContext>> _Endpoints;
-        
+
         public static int _MaxSimultaneousConnections = 20;
         private Semaphore sem = new Semaphore(_MaxSimultaneousConnections, _MaxSimultaneousConnections);
 
@@ -247,9 +247,14 @@ namespace TheBitBrine
                     {
                         if (RequestedEndpoint.EndsWith("/"))
                             RequestedEndpoint = RequestedEndpoint.Remove(RequestedEndpoint.Length - 2, 1);
-                        if (RequestedEndpoint.StartsWith("/")) RequestedEndpoint = RequestedEndpoint.Remove(0, 1);
+
+                        if (RequestedEndpoint.StartsWith("/"))
+                            RequestedEndpoint = RequestedEndpoint.Remove(0, 1);
+
+                        if (RequestedEndpoint.Contains("/"))
+                            RequestedEndpoint = RequestedEndpoint.Split('/').First();
                     }
-                    
+
                     if (RequestedEndpoint.Contains('?'))
                         RequestedEndpoint = RequestedEndpoint.Split('?')[0];
 
@@ -258,15 +263,15 @@ namespace TheBitBrine
                     else
                     {
                         context.Response.StatusDescription = "Endpoint not found";
-                        context.Response.StatusCode = (int) HttpStatusCode.NotFound;
+                        context.Response.StatusCode = (int)HttpStatusCode.NotFound;
                     }
                 }
                 catch (Exception ex)
                 {
                     context.Response.StatusDescription = ex.Message;
-                    context.Response.StatusCode = (int) HttpStatusCode.InternalServerError;
+                    context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 }
-                
+
                 context?.Response?.OutputStream.Close();
             }
             catch (Exception ex)
@@ -278,6 +283,6 @@ namespace TheBitBrine
 
         #endregion
         #endregion
-        
+
     }
 }
