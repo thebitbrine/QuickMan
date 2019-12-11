@@ -134,7 +134,8 @@ namespace TheBitBrine
 
         public void AllowListener(string URL)
         {
-            string command = $"http add urlacl url={ new Uri(URL).AbsoluteUri } user=Everyone";
+            var _URL = new Uri(URL);
+            string command = $"http add urlacl url={_URL.Scheme}://{_URL.Host}:{_URL.Port}/ user=Everyone";
             System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo("netsh", command) { WindowStyle = ProcessWindowStyle.Hidden, CreateNoWindow = true, Verb = "runas" });
         }
 
