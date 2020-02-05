@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Threading;
 
@@ -93,7 +92,7 @@ namespace TheBitBrine
             }
             catch (Exception ex)
             {
-                PrintLine($"ERR: Server failed to start.\nCause: {ex.Message}");
+                PrintLine($"ERR: Server failed to start.\nCause: {ex.Message}\nStackTrace:{ex.StackTrace}");
             }
 
             while (Listener != null)
@@ -134,8 +133,7 @@ namespace TheBitBrine
 
         public void AllowListener(string URL)
         {
-            var _URL = new Uri(URL);
-            string command = $"http add urlacl url={_URL.Scheme}://{_URL.Host}:{_URL.Port}/ user=Everyone";
+            string command = $"http add urlacl url={ new Uri(URL).AbsoluteUri } user=Everyone";
             System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo("netsh", command) { WindowStyle = ProcessWindowStyle.Hidden, CreateNoWindow = true, Verb = "runas" });
         }
 
@@ -233,7 +231,6 @@ namespace TheBitBrine
         #endregion
         #region Server Main
 
-        private int count = 0;
         private void Process(HttpListenerContext context)
         {
             try
@@ -252,8 +249,8 @@ namespace TheBitBrine
                         if (RequestedEndpoint.StartsWith("/"))
                             RequestedEndpoint = RequestedEndpoint.Remove(0, 1);
 
-                        if (RequestedEndpoint.Contains("/"))
-                            RequestedEndpoint = RequestedEndpoint.Split('/').First();
+                        //if (RequestedEndpoint.Contains("/"))
+                        //    RequestedEndpoint = RequestedEndpoint.Split('/').First();
                     }
 
                     if (RequestedEndpoint.Contains('?'))
