@@ -17,7 +17,7 @@ namespace TheBitBrine
         private int _Port = 1999;
         private Dictionary<string, Action<HttpListenerContext>> _Endpoints;
 
-        public static int _MaxSimultaneousConnections = 20;
+        private static int _MaxSimultaneousConnections = 20;
         private Semaphore sem = new Semaphore(_MaxSimultaneousConnections, _MaxSimultaneousConnections);
 
         /// <summary>
@@ -112,17 +112,17 @@ namespace TheBitBrine
         #endregion
         #region Server Misc.
 
-        public void PrintLine(string String)
+        private void PrintLine(string String)
         {
             Console.WriteLine(Tag(String));
         }
 
-        public string Tag(string Text)
+        private string Tag(string Text)
         {
             return "[" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + "] " + Text;
         }
 
-        public string GetLocalIP()
+        private string GetLocalIP()
         {
             using (System.Net.Sockets.Socket Socket = new System.Net.Sockets.Socket(System.Net.Sockets.AddressFamily.InterNetwork, System.Net.Sockets.SocketType.Dgram, 0))
             {
@@ -131,7 +131,7 @@ namespace TheBitBrine
             }
         }
 
-        public void AllowListener(string URL)
+        private void AllowListener(string URL)
         {
             string command = $"http add urlacl url={ new Uri(URL).AbsoluteUri } user=Everyone";
             System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo("netsh", command) { WindowStyle = ProcessWindowStyle.Hidden, CreateNoWindow = true, Verb = "runas" });
@@ -219,7 +219,7 @@ namespace TheBitBrine
             Context.Response.OutputStream.Flush();
         }
 
-        public Stream StringToStream(string s)
+        private Stream StringToStream(string s)
         {
             var stream = new MemoryStream();
             var writer = new StreamWriter(stream);
