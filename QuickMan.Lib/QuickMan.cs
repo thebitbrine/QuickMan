@@ -130,11 +130,15 @@ namespace TheBitBrine
                 return (Socket.LocalEndPoint as System.Net.IPEndPoint)?.Address.ToString();
             }
         }
-
+        
         private void AllowListener(string URL)
         {
-            string command = $"http add urlacl url={ new Uri(URL).AbsoluteUri } user=Everyone";
-            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo("netsh", command) { WindowStyle = ProcessWindowStyle.Hidden, CreateNoWindow = true, Verb = "runas" });
+            try
+            {
+                string command = $"http add urlacl url={ new Uri(URL).AbsoluteUri } user=Everyone";
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo("netsh", command) { WindowStyle = ProcessWindowStyle.Hidden, CreateNoWindow = true, Verb = "runas" });
+            }
+            catch { }
         }
 
         public void Respond(string Response, HttpListenerContext Context)
