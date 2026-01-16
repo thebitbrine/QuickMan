@@ -1,0 +1,15 @@
+# Build artifacts
+*.o
+*.a
+quickman_example
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
