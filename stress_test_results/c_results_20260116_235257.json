@@ -1,0 +1,136 @@
+{
+  "timestamp": "20260116_235257",
+  "server": "C",
+  "port": 8001,
+  "config": {
+    "requests_per_test": 10000,
+    "concurrent_levels": [
+      10,
+      50,
+      100,
+      200
+    ],
+    "warmup_requests": 500,
+    "endpoints": [
+      "benchmark",
+      "status",
+      "data"
+    ]
+  },
+  "results": {
+    "benchmark": [
+      {
+        "concurrent_connections": 10,
+        "requests_per_second": 1388.7603460775695,
+        "avg_latency_ms": 7.147723317146301,
+        "p50_latency_ms": 7.035255432128906,
+        "p95_latency_ms": 8.432626724243164,
+        "p99_latency_ms": 9.554386138916016,
+        "success_rate": 100.0
+      },
+      {
+        "concurrent_connections": 50,
+        "requests_per_second": 1577.7162268126567,
+        "avg_latency_ms": 27.44889807701111,
+        "p50_latency_ms": 29.497623443603516,
+        "p95_latency_ms": 35.527944564819336,
+        "p99_latency_ms": 39.865732192993164,
+        "success_rate": 100.0
+      },
+      {
+        "concurrent_connections": 100,
+        "requests_per_second": 1398.1328379266147,
+        "avg_latency_ms": 32.07740924358368,
+        "p50_latency_ms": 9.482145309448242,
+        "p95_latency_ms": 85.58797836303711,
+        "p99_latency_ms": 100.45552253723145,
+        "success_rate": 100.0
+      },
+      {
+        "concurrent_connections": 200,
+        "requests_per_second": 1370.601762321026,
+        "avg_latency_ms": 60.87816350460052,
+        "p50_latency_ms": 52.80423164367676,
+        "p95_latency_ms": 173.02370071411133,
+        "p99_latency_ms": 232.97381401062012,
+        "success_rate": 100.0
+      }
+    ],
+    "status": [
+      {
+        "concurrent_connections": 10,
+        "requests_per_second": 1350.871488902577,
+        "avg_latency_ms": 7.347101402282715,
+        "p50_latency_ms": 7.229804992675781,
+        "p95_latency_ms": 8.64553451538086,
+        "p99_latency_ms": 9.798288345336914,
+        "success_rate": 100.0
+      },
+      {
+        "concurrent_connections": 50,
+        "requests_per_second": 1428.5868529603274,
+        "avg_latency_ms": 24.201236367225647,
+        "p50_latency_ms": 31.47292137145996,
+        "p95_latency_ms": 39.46948051452637,
+        "p99_latency_ms": 45.92180252075195,
+        "success_rate": 100.0
+      },
+      {
+        "concurrent_connections": 100,
+        "requests_per_second": 1430.8182810663689,
+        "avg_latency_ms": 50.943078589439395,
+        "p50_latency_ms": 60.556888580322266,
+        "p95_latency_ms": 90.65628051757812,
+        "p99_latency_ms": 105.82828521728516,
+        "success_rate": 100.0
+      },
+      {
+        "concurrent_connections": 200,
+        "requests_per_second": 1396.9661586328284,
+        "avg_latency_ms": 49.948735094070436,
+        "p50_latency_ms": 16.853809356689453,
+        "p95_latency_ms": 158.38241577148438,
+        "p99_latency_ms": 234.96317863464355,
+        "success_rate": 100.0
+      }
+    ],
+    "data": [
+      {
+        "concurrent_connections": 10,
+        "requests_per_second": 1520.1866627822683,
+        "avg_latency_ms": 6.538957023620606,
+        "p50_latency_ms": 6.432533264160156,
+        "p95_latency_ms": 7.755279541015625,
+        "p99_latency_ms": 8.580923080444336,
+        "success_rate": 100.0
+      },
+      {
+        "concurrent_connections": 50,
+        "requests_per_second": 1334.0369226641312,
+        "avg_latency_ms": 26.098444366455077,
+        "p50_latency_ms": 33.95962715148926,
+        "p95_latency_ms": 41.75138473510742,
+        "p99_latency_ms": 45.815229415893555,
+        "success_rate": 100.0
+      },
+      {
+        "concurrent_connections": 100,
+        "requests_per_second": 1356.0663940698737,
+        "avg_latency_ms": 45.45125777721405,
+        "p50_latency_ms": 55.84454536437988,
+        "p95_latency_ms": 85.53218841552734,
+        "p99_latency_ms": 99.72143173217773,
+        "success_rate": 100.0
+      },
+      {
+        "concurrent_connections": 200,
+        "requests_per_second": 1296.075320929982,
+        "avg_latency_ms": 87.3831250667572,
+        "p50_latency_ms": 81.25805854797363,
+        "p95_latency_ms": 224.90429878234863,
+        "p99_latency_ms": 305.82237243652344,
+        "success_rate": 100.0
+      }
+    ]
+  }
+}
